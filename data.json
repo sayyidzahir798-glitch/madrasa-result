@@ -1,0 +1,18 @@
+[
+  {
+    "regno": "1001",
+    "name": "Muhammed Ali",
+    "quran": 90,
+    "fiqh": 85,
+    "total": 175,
+    "status": "Passed"
+  },
+  {
+    "regno": "1002",
+    "name": "Fathima",
+    "quran": 95,
+    "fiqh": 90,
+    "total": 185,
+    "status": "Passed"
+  }
+]
