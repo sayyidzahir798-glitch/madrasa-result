@@ -1,18 +1,12 @@
 [
-  {
-    "regno": "1001",
-    "name": "Muhammed Ali",
-    "quran": 90,
-    "fiqh": 85,
-    "total": 175,
-    "status": "Passed"
-  },
-  {
-    "regno": "1002",
-    "name": "Fathima",
-    "quran": 95,
-    "fiqh": 90,
-    "total": 185,
-    "status": "Passed"
-  }
+  {"regno": "5716", "name": "MOHAMMED RISHAD K", "fiqh": 50, "liqur": 55, "durihsan": 49, "thafsir": 31, "total": 185, "grade": "Third Class"},
+  {"regno": "5717", "name": "MUHAMMAD MUZAMMIL. M", "fiqh": 67, "liqur": 57, "durihsan": 57, "thafsir": 54, "total": 235, "grade": "Second Class"},
+  {"regno": "5718", "name": "MOHAMED SHAMIL MP", "fiqh": 66, "liqur": 60, "durihsan": 63, "thafsir": 62, "total": 251, "grade": "First Class"},
+  {"regno": "5719", "name": "NIHAL A", "fiqh": 68, "liqur": 55, "durihsan": 63, "thafsir": 57, "total": 243, "grade": "Second Class"},
+  {"regno": "5720", "name": "MOHAMMAD NIHAL PK", "fiqh": 67, "liqur": 64, "durihsan": 66, "thafsir": 60, "total": 257, "grade": "First Class"},
+  {"regno": "5721", "name": "SHAMIL MAHMOOD PK", "fiqh": 98, "liqur": 67, "durihsan": 69, "thafsir": 60, "total": 294, "grade": "First Class"},
+  {"regno": "5722", "name": "MOHAMMED SHABEEB PC", "fiqh": 67, "liqur": 62, "durihsan": 66, "thafsir": 60, "total": 255, "grade": "First Class"},
+  {"regno": "5723", "name": "ANSHIDA MP", "fiqh": 97, "liqur": 97, "durihsan": 94, "thafsir": 88, "total": 376, "grade": "Distinction"},
+  {"regno": "5724", "name": "FATHIMA SAFNA P", "fiqh": 98, "liqur": 97, "durihsan": 97, "thafsir": 98, "total": 390, "grade": "Top Plus"},
+  {"regno": "5725", "name": "MINHAFATHIMA PC", "fiqh": 97, "liqur": 98, "durihsan": 99, "thafsir": 97, "total": 391, "grade": "Top Plus"}
 ]
