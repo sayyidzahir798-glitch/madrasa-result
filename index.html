@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madrasa Exam Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f4; }
+        .container { background: white; padding: 20px; width: 300px; margin: auto; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        input { padding: 10px; width: 80%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #218838; }
+        #result { margin-top: 20px; font-weight: bold; text-align: left; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>പരീക്ഷാ ഫലം</h2>
+    <input type="text" id="regInput" placeholder="രജിസ്റ്റർ നമ്പർ നൽകുക">
+    <br>
+    <button onclick="fetchResult()">റിസൾട്ട് കാണുക</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    function fetchResult() {
+        let regNo = document.getElementById("regInput").value;
+        let resultDiv = document.getElementById("result");
+
+        if(regNo === "") {
+            resultDiv.innerHTML = "<p style='color:red;'>ദയവായി രജിസ്റ്റർ നമ്പർ നൽകുക!</p>";
+            return;
+        }
+
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                let student = data.find(s => s.regno === regNo);
+                if (student) {
+                    resultDiv.innerHTML = `
+                        <p><strong>പേര്:</strong> ${student.name}</p>
+                        <p><strong>ഖുർആൻ:</strong> ${student.quran}</p>
+                        <p><strong>ഫിഖ്ഹ്:</strong> ${student.fiqh}</p>
+                        <p><strong>ആകെ മാർക്ക്:</strong> ${student.total}</p>
+                        <p><strong>സ്റ്റാറ്റസ്:</strong> <span style="color:${student.status === 'Passed' ? 'green' : 'red'}">${student.status}</span></p>
+                    `;
+                } else {
+                    resultDiv.innerHTML = "<p style='color:red;'>ഈ രജിസ്റ്റർ നമ്പർ കണ്ടെത്താനായില്ല!</p>";
+                }
+            })
+            .catch(error => {
+                resultDiv.innerHTML = "<p style='color:red;'>സാങ്കേതിക തകരാർ. വീണ്ടും ശ്രമിക്കുക.</p>";
+            });
+    }
+</script>
+</body>
+</html>
