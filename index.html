@@ -5,20 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Madrasa Exam Result</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f4f4f4; }
-        .container { background: white; padding: 20px; width: 320px; margin: auto; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-        input { padding: 10px; width: 80%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #218838; }
-        #result { margin-top: 20px; font-weight: bold; text-align: left; line-height: 1.6;}
-        .grade { color: #d9534f; }
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 40px; background-color: #f0f2f5; }
+        .container { background: white; padding: 25px; width: 90%; max-width: 350px; margin: auto; border-radius: 12px; box-shadow: 0px 4px 15px rgba(0,0,0,0.1); }
+        
+        h2 { color: #333; margin-bottom: 20px; }
+        input { padding: 12px; width: 80%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px; text-align: center;}
+        button { padding: 12px 25px; background: #007bff; color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; width: 88%;}
+        button:hover { background: #0056b3; }
+        
+        #result { margin-top: 25px; text-align: left; }
+        
+        /* Table Design */
+        .student-name { font-size: 18px; font-weight: bold; text-align: center; color: #2c3e50; margin-bottom: 15px; padding: 10px; background-color: #eef2f5; border-radius: 6px;}
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        th, td { border: 1px solid #ddd; padding: 10px; font-size: 15px; }
+        th { background-color: #f8f9fa; color: #333; width: 60%; }
+        td { font-weight: bold; text-align: center; color: #444; }
+        
+        .total-row th, .total-row td { background-color: #d1ecf1; color: #0c5460; font-size: 16px; }
+        .grade-row th, .grade-row td { background-color: #d4edda; color: #155724; font-size: 16px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h2>പരീക്ഷാ ഫലം</h2>
-    <input type="text" id="regInput" placeholder="രജിസ്റ്റർ നമ്പർ നൽകുക (ഉദാ: 5716)">
+    <input type="text" id="regInput" placeholder="രജിസ്റ്റർ നമ്പർ (ഉദാ: 5716)">
     <br>
     <button onclick="fetchResult()">റിസൾട്ട് കാണുക</button>
 
@@ -31,7 +43,7 @@
         let resultDiv = document.getElementById("result");
 
         if(regNo === "") {
-            resultDiv.innerHTML = "<p style='color:red;'>ദയവായി രജിസ്റ്റർ നമ്പർ നൽകുക!</p>";
+            resultDiv.innerHTML = "<p style='color:red; text-align:center;'>ദയവായി രജിസ്റ്റർ നമ്പർ നൽകുക!</p>";
             return;
         }
 
@@ -41,21 +53,22 @@
                 let student = data.find(s => s.regno === regNo);
                 if (student) {
                     resultDiv.innerHTML = `
-                        <p><strong>പേര്:</strong> ${student.name}</p>
-                        <p><strong>ഫിഖ്ഹ് (Fiqh):</strong> ${student.fiqh}</p>
-                        <p><strong>ലിസാനുൽ ഖുർആൻ (Li.Qur):</strong> ${student.liqur}</p>
-                        <p><strong>ദുറുസുൽ ഇഹ്സാൻ (Dur. Ihsan):</strong> ${student.durihsan}</p>
-                        <p><strong>തഫ്സീർ (Thafsir):</strong> ${student.thafsir}</p>
-                        <hr>
-                        <p><strong>ആകെ മാർക്ക്:</strong> ${student.total}</p>
-                        <p><strong>ഗ്രേഡ് (Grade):</strong> <span class="grade">${student.grade}</span></p>
+                        <div class="student-name">${student.name}</div>
+                        <table>
+                            <tr><th>ഫിഖ്ഹ് (Fiqh)</th><td>${student.fiqh}</td></tr>
+                            <tr><th>ലിസാനുൽ ഖുർആൻ</th><td>${student.liqur}</td></tr>
+                            <tr><th>ദുറുസുൽ ഇഹ്സാൻ</th><td>${student.durihsan}</td></tr>
+                            <tr><th>തഫ്സീർ (Thafsir)</th><td>${student.thafsir}</td></tr>
+                            <tr class="total-row"><th>ആകെ മാർക്ക്</th><td>${student.total}</td></tr>
+                            <tr class="grade-row"><th>ഗ്രേഡ് (Grade)</th><td>${student.grade}</td></tr>
+                        </table>
                     `;
                 } else {
-                    resultDiv.innerHTML = "<p style='color:red;'>ഈ രജിസ്റ്റർ നമ്പർ കണ്ടെത്താനായില്ല!</p>";
+                    resultDiv.innerHTML = "<p style='color:red; text-align:center;'>ഈ രജിസ്റ്റർ നമ്പർ കണ്ടെത്താനായില്ല!</p>";
                 }
             })
             .catch(error => {
-                resultDiv.innerHTML = "<p style='color:red;'>സാങ്കേതിക തകരാർ. വീണ്ടും ശ്രമിക്കുക.</p>";
+                resultDiv.innerHTML = "<p style='color:red; text-align:center;'>സാങ്കേതിക തകരാർ. വീണ്ടും ശ്രമിക്കുക.</p>";
             });
     }
 </script>
